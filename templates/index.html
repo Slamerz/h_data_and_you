@@ -1,0 +1,15 @@
+{% load mptt_tags %}
+<a href={% url 'logout' %}><button>Logout</button></a>
+<a href={% url 'newfile' %}><button>Create New File</button></a>
+<ul>
+    {% recursetree files %}
+        <li>
+            {{ node.name }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
